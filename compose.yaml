@@ -1,0 +1,29 @@
+services:
+  web:
+    image: nginx:latest
+    container_name: web-server
+    ports: 
+      - "8088:80"
+    volumes:
+      - C:\Users\Luca\Desktop\Exprivia\Html:/usr/share/nginx/html
+    networks:
+      - internal
+
+  jenkins:
+    networks:
+      - internal
+    image: jenkins/jenkins:lts-jdk17
+    container_name: jenkins
+    volumes:
+    - jenkins_home:/var/jenkins_home
+    ports:
+      - "8080:8080"
+      - "5000:5000"
+
+
+volumes:
+  postgres-volume:
+  jenkins_home:
+
+networks:
+  internal:
